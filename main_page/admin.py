@@ -7,5 +7,5 @@ admin.site.register(Category)
 class DishesAdmin(admin.ModelAdmin):
     list_filter = ('category', 'position', )
     list_display = ['name', 'position', 'is_visible', 'price', 'photo', 'category']
-    list_editable = ['position', 'is_visible', 'price',]
+    list_editable = ['position', 'is_visible', 'price']
     prepopulated_fields = {'slug': ('name', ), }
