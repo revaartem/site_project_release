@@ -1,15 +1,19 @@
 from django.contrib import admin
-from .models import Category, Dishes, Events, Gallery, Photo, TableReservation, AboutUs, HomeSliderInfo,\
-    BlockOfInformation, InformationInBlocks, CrewBlock, CrewMember, CustomerFeedback
+from .models import Category, Dishes, Events, PhotoToGallery, AboutUs, \
+    BlockOfInformation, CrewMember, CustomerFeedback, HeroSection
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'position', 'is_visible']
     list_editable = ['position', 'is_visible']
 
+
 @admin.register(Events)
 class EventsAdmin(admin.ModelAdmin):
-    list_display = ['title', 'event_description', 'event_date_and_time', 'position', 'is_visible']
-    list_editable = ['event_date_and_time', 'position', 'is_visible']
+    list_display = ['title', 'event_description', 'event_date_and_time', 'event_price', 'is_visible']
+    list_editable = ['event_date_and_time', 'event_price', 'is_visible']
+
 
 @admin.register(Dishes)
 class DishesAdmin(admin.ModelAdmin):
@@ -19,25 +23,10 @@ class DishesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', ), }
 
 
-@admin.register(Gallery)
-class GalleryAdmin(admin.ModelAdmin):
-    list_filter = ('position', )
-    list_display = ['title', 'position', 'is_visible']
-    list_editable = ['position', 'is_visible']
-
-
-@admin.register(Photo)
-class PhotoAdmin(admin.ModelAdmin):
-    list_filter = ('position', 'gallery')
-    list_display = ['title', 'position', 'gallery', 'photo', 'is_visible']
-    list_editable = ['position', 'gallery', 'is_visible']
-
-
-@admin.register(TableReservation)
-class TableReservationAdmin(admin.ModelAdmin):
-    list_display = ['date', 'time', 'name_of_customer', 'email', 'phone_number', 'number_of_people', 'additional_message']
-    list_editable = ['number_of_people', 'additional_message']
-    list_filter = ('date', )
+@admin.register(PhotoToGallery)
+class PhotoToGalleryAdmin(admin.ModelAdmin):
+    list_display = ['photo', 'is_visible']
+    list_editable = ['is_visible', ]
 
 
 @admin.register(AboutUs)
@@ -46,35 +35,24 @@ class AboutUsAdmin(admin.ModelAdmin):
     list_editable = ['heading_text']
 
 
-@admin.register(HomeSliderInfo)
-class HomeSliderAdmin(admin.ModelAdmin):
-    list_display = ['header', 'heading_text', 'video']
-    list_editable = ['heading_text']
+@admin.register(BlockOfInformation)
+class BlockOfInformationAdmin(admin.ModelAdmin):
+    list_display = ['block_number', 'block_title', 'block_text']
+    list_editable = ['block_title', 'block_text']
 
 
-class BlockOfInformationAdmin(admin.TabularInline):
-    model = BlockOfInformation
-    raw_id_fields = ['block']
-
-
-@admin.register(InformationInBlocks)
-class InformationInBlocksAdmin(admin.ModelAdmin):
-    list_display = ['header', 'heading_text']
-    inlines = [BlockOfInformationAdmin]
-
-
-class CrewMemberAdmin(admin.TabularInline):
-    model = CrewMember
-    raw_id_fields = ['crew']
-
-
-@admin.register(CrewBlock)
-class CrewBlockAdmin(admin.ModelAdmin):
-    list_display = ['header', 'heading_text']
-    inlines = [CrewMemberAdmin]
+@admin.register(CrewMember)
+class CrewMemberAdmin(admin.ModelAdmin):
+    list_display = ['member_name', 'member_description', 'member_photo']
+    list_editable = ['member_description', ]
 
 
 @admin.register(CustomerFeedback)
 class CustomerFeedbackAdmin(admin.ModelAdmin):
-    list_display = ['customer_name', 'comment', 'is_visible', 'customer_photo']
+    list_display = ['customer_name', 'position', 'comment', 'is_visible', 'customer_photo']
     list_editable = ['comment', 'is_visible']
+
+@admin.register(HeroSection)
+class HeroSectionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'description', 'photo']
+    list_editable = ['description', 'photo']

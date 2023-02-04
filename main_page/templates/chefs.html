@@ -1,0 +1,33 @@
+    <!-- ======= Chefs Section ======= -->
+    <section id="chefs" class="chefs">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Our Proffesional <span>Chefs</span></h2>
+          <p>Static description about stuff team.</p>
+        </div>
+
+        <div class="row">
+
+            {% for member in crew_member %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="member">
+                      <div class="pic"><img src="{{ member.member_photo.url }}" class="img-fluid" alt=""></div>
+                      <div class="member-info">
+                        <h4>{{ member.member_name }}</h4>
+                        <span>{{ member.member_description }}</span>
+                        <div class="social">
+                          <a href="{{ member.twitter_link }}"><i class="bi bi-twitter"></i></a>
+                          <a href="{{ member.facebook_link }}"><i class="bi bi-facebook"></i></a>
+                          <a href="{{ member.instagram_link }}"><i class="bi bi-instagram"></i></a>
+                          <a href="{{ member.linkedin_link }}"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Chefs Section -->

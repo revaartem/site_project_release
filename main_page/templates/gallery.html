@@ -1,0 +1,25 @@
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+      <div class="container-fluid">
+
+        <div class="section-title">
+          <h2>Some photos from <span>Our Restaurant</span></h2>
+          <p>Static description of gallery.</p>
+        </div>
+
+        <div class="row g-0">
+
+            {% for photo in photo_in_gallery %}
+                <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{{ photo.photo.url }}" class="gallery-lightbox">
+                <img src="{{ photo.photo.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+            {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
