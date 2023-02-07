@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_page.apps.MainPageConfig',
+    'manager.apps.ManagerConfig',
+    'tinymce',
 ]
 
 MIDDLEWARE = [

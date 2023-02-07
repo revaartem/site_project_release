@@ -1,4 +1,6 @@
+from django.core.validators import RegexValidator
 from django.db import models
+from tinymce.models import HTMLField
 import uuid
 import os
 
@@ -145,3 +147,84 @@ class HeroSection(models.Model):
     photo = models.ImageField(upload_to=get_file_name)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
+
+
+class UserReservation(models.Model):
+
+    mobile_re = RegexValidator(regex=r'^(\d{3}[- .]?){2}\d{4}$', message='Phone in format xxx xxx xxxx')
+    email_re = RegexValidator(regex=r'^[a-zA-Z0-9]{1}[a-zA-Z0-9_]+(-{1})?[a-zA-Z0-9_]+@{1}([a-zA-Z0-9]+\.)+[a-z0-9]{1}'
+                                    r'([a-z0-9-]*[a-z0-9])?$', message='Standard e-mail form')
+
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=63, validators=[email_re])
+    phone = models.CharField(max_length=15, validators=[mobile_re])
+    date_reservation = models.CharField(max_length=10)
+    time_reservation = models.CharField(max_length=10)
+    persons = models.PositiveSmallIntegerField()
+    message = models.TextField(max_length=250, blank=True)
+    date_of_the_request = models.DateTimeField(auto_now_add=True)
+    is_processed = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('-date_of_the_request', )
+
+    def __str__(self):
+        return f'{self.name}, {self.phone}: {self.message}'
+
+
+class ThisIsForTest(models.Model):
+
+    this_is_text = HTMLField(max_length=250)
+    this_is_text_2 = HTMLField(max_length=250)
+    this_is_text_3 = HTMLField(max_length=250)
+
+
+class ContactUs(models.Model):
+
+    email_re = RegexValidator(regex=r'^[a-zA-Z0-9]{1}[a-zA-Z0-9_]+(-{1})?[a-zA-Z0-9_]+@{1}([a-zA-Z0-9]+\.)+[a-z0-9]{1}'
+                                    r'([a-z0-9-]*[a-z0-9])?$', message='Standard e-mail form')
+
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=63, validators=[email_re])
+    subject = models.CharField(max_length=100)
+    message = models.TextField(max_length=250, blank=True)
+    date_of_the_request = models.DateTimeField(auto_now_add=True)
+    is_processed = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('-date_of_the_request', )
+
+    def __str__(self):
+        return f'{self.name}, {self.email} - {self.subject}'
+
+
+class InformationInContactUs(models.Model):
+
+    header = models.CharField(max_length=50)
+    heading_text = HTMLField(max_length=250)
+    location = HTMLField()
+    open_hours = HTMLField()
+    email = HTMLField()
+    call = HTMLField()
+    phone_for_top_bar = models.CharField(max_length=15)
+    open_hours_for_top_bar = models.CharField(max_length=40)
+
+    def __str__(self):
+        return f'{self.header}'
+
+
+class Footer(models.Model):
+
+    header = HTMLField()
+    heading_text = HTMLField(blank=True)
+    twitter = models.CharField(max_length=500, blank=True)
+    facebook = models.CharField(max_length=500, blank=True)
+    instagram = models.CharField(max_length=500, blank=True)
+    skype = models.CharField(max_length=500, blank=True)
+    linked_in = models.CharField(max_length=500, blank=True)
+    site_owner = HTMLField()
+
+    def __str__(self):
+        return f'{self.header} - {self.site_owner}'
+
+

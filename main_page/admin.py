@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Category, Dishes, Events, PhotoToGallery, AboutUs, \
-    BlockOfInformation, CrewMember, CustomerFeedback, HeroSection
+    BlockOfInformation, CrewMember, CustomerFeedback, HeroSection, \
+    UserReservation, ThisIsForTest, ContactUs, InformationInContactUs, Footer
 
 
 @admin.register(Category)
@@ -56,3 +57,10 @@ class CustomerFeedbackAdmin(admin.ModelAdmin):
 class HeroSectionAdmin(admin.ModelAdmin):
     list_display = ['title', 'description', 'photo']
     list_editable = ['description', 'photo']
+
+
+admin.site.register(UserReservation)
+admin.site.register(ThisIsForTest)
+admin.site.register(ContactUs)
+admin.site.register(InformationInContactUs)
+admin.site.register(Footer)
