@@ -55,7 +55,7 @@
 
     Where:
     manager: <----- Name of the app, we are working with (We write this in variable 'app_name' in manager\urls.py)
-    update_reserve <----- path with name 'update_reserve'
+    update_reserve <----- path with name 'update_reserve', that will put to work function, that has been written in path in manager\urls.py
     pk=item.pk <----- As parameter we will have primary key on this application.
 
 11. Going to manager\urls.py
@@ -66,7 +66,7 @@
 
     Where:
     reservations/update/<int:pk> <----- If we have this path in our browser url-line - we get in this 'path'.
-    update_reservation <----- Function that will work in this path.
+    update_reservation <----- Function that will work in this path. (We will create it on the next step, don't worry)
     name='update_reserve' <----- We assign a name to this path. We need it, because we use this in 10 pt. When we use constructions like this, it makes our code more flexible and correct.
 
 12. Going to manager\views.py
