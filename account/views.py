@@ -8,6 +8,8 @@ def registration_view(request):
     form = UserRegistration(request.POST or None)
     information_in_contact_us = InformationInContactUs.objects.get()
     footer = Footer.objects.get()
+    user_manager = request.user.groups.filter(name='manager').exists()
+    user_auth = request.user.is_authenticated
     if form.is_valid():
         new_user = form.save(commit=False)
         new_user.set_password(form.cleaned_data['password'])
@@ -22,6 +24,8 @@ def registration_view(request):
         'form': form,
         'information_in_contact_us': information_in_contact_us,
         'footer': footer,
+        'user_manager': user_manager,
+        'user_auth': user_auth
     }
     return render(request, 'registration.html', context=data)
 
@@ -31,7 +35,8 @@ def login_view(request):
     next_get = request.GET.get('next')
     information_in_contact_us = InformationInContactUs.objects.get()
     footer = Footer.objects.get()
-
+    user_manager = request.user.groups.filter(name='manager').exists()
+    user_auth = request.user.is_authenticated
     if form.is_valid():
         username = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password')
@@ -45,6 +50,8 @@ def login_view(request):
         'form': form,
         'information_in_contact_us': information_in_contact_us,
         'footer': footer,
+        'user_manager': user_manager,
+        'user_auth': user_auth
     }
 
     return render(request, 'login.html', context=data)
