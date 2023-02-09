@@ -1,6 +1,23 @@
-{% extends 'index.html' %}
+{% extends 'account.html' %}
 
 {% block content %}
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Contact applications</h2>
+          <ol>
+            <li><a href="/">Home</a></li>
+              <li><a href={% url 'manager:manager_page' %}>Manager</a></li>
+            <li>Contact applications</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
     <section id="reserves">
         <div class="container">
             <div class="col-md-10 col-md-offset-1">

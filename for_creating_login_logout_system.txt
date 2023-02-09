@@ -19,9 +19,9 @@ Django as a framework already have authentication module, his name written in se
         model = User
         fields = ('username', ) <----- We can't store login and password in the same place (because of safety), so in this variable we will write only 'username'
 
-        username = forms.CharField(widget=forms.TextInput())      |
-        password = forms.CharField(widget=forms.PasswordInput())  | <----- That's will be our fields of user's registration
-        password2 = forms.CharField(widget=forms.PasswordInput()) |
+    username = forms.CharField(widget=forms.TextInput())      |
+    password = forms.CharField(widget=forms.PasswordInput())  | <----- That's will be our fields of user's registration
+    password2 = forms.CharField(widget=forms.PasswordInput()) |
 
     Sometimes, we need to get clean data of user login and password (to authenticate user, for example). For this we need to
     create function 'clean'. Doing this at the same class in file forms.py.
@@ -98,15 +98,15 @@ Django as a framework already have authentication module, his name written in se
        next_get = request.GET.get('next') <----- Here we get dictionary from GET request, in this dict we get value from key 'next', this will be our path, when user finished registration.
 
        if form.is_valid():
-           username = self.cleaned_data.get('username') <----- Get user's name from form
-           password = self.cleaned_data.get('password') <----- Get user's password from form
+           username = form.cleaned_data.get('username') <----- Get user's name from form
+           password = form.cleaned_data.get('password') <----- Get user's password from form
            user = authenticate(username=username, password=password) <----- Try to authenticate user
            login(request, user) <----- Built-in function, that authorized user and say to the system - that user is log in.
 
            next_post = request.POST.get('next') <----- Here we get dictionary from POST request, in this dict we get value from key 'next', this will be our path, when user finished registration.
            return redirect(next_get or next_post or '/')
 
-       return render(request, 'login.html', context:{'form': form}) <----- If we have GET-request, we re-direct user to login page. Page will create in next step.
+       return render(request, 'login.html', context={'form': form}) <----- If we have GET-request, we re-direct user to login page. Page will create in next step.
 
 9. In account\templates\ create login.html. In this file write html code of this page.
 10. Going to {name_of_project}\urls.py.
@@ -149,7 +149,7 @@ Django as a framework already have authentication module, his name written in se
 
     Then decorate our view-function with this decorator.
 
-    @login_required(login_url=/login/) <----- As parameter in this decorator we set path, where decorator must redirect user, if user not logged in system.
+    @login_required(login_url='/login/') <----- As parameter in this decorator we set path, where decorator must redirect user, if user not logged in system.
     def main(request):
     ...
 

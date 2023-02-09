@@ -18,13 +18,16 @@ from django.urls import path, include
 from main_page.views import main_page
 from django.conf import settings
 from django.conf.urls.static import static
-from account.views import registration_view
+from account.views import registration_view, login_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('manager/', include('manager.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('registration/', registration_view, name='registration_view'),
+    path('logout/', logout_view, name='logout_view'),
+    path('login/', login_view, name='login_view'),
+    path('accounts/login/', login_view),
     path('', main_page)
 ]
 

@@ -4,7 +4,9 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import Category, Dishes, AboutUs, BlockOfInformation, Events, PhotoToGallery, CrewMember, \
     CustomerFeedback, HeroSection, ThisIsForTest, InformationInContactUs, Footer
 from .forms import UserReservationForm, ContactUsForm
+from django.contrib.auth.models import User
 # Create your views here.
+
 
 
 def main_page(request):
@@ -19,6 +21,8 @@ def main_page(request):
             contact_us.save()
             return redirect('/')
 
+    user_manager = request.user.groups.filter(name='manager').exists()
+    user_auth = request.user.is_authenticated
     categories = Category.objects.filter(is_visible=True)
     dishes = Dishes.objects.filter(is_visible=True)
     specials = Dishes.objects.filter(special=True)
@@ -51,6 +55,8 @@ def main_page(request):
         'contact_us': contact_us,
         'information_in_contact_us': information_in_contact_us,
         'footer': footer,
+        'user_manager': user_manager,
+        'user_auth': user_auth
 
 
 
