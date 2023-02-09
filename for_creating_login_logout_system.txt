@@ -20,8 +20,8 @@ Django as a framework already have authentication module, his name written in se
         fields = ('username', ) <----- We can't store login and password in the same place (because of safety), so in this variable we will write only 'username'
 
         username = forms.CharField(widget=forms.TextInput())      |
-        password = forms.ChatField(widget=forms.PasswordInput())  | <----- That's will be our fields of user's registration
-        password2 = forms.ChatField(widget=forms.PasswordInput()) |
+        password = forms.CharField(widget=forms.PasswordInput())  | <----- That's will be our fields of user's registration
+        password2 = forms.CharField(widget=forms.PasswordInput()) |
 
     Sometimes, we need to get clean data of user login and password (to authenticate user, for example). For this we need to
     create function 'clean'. Doing this at the same class in file forms.py.
@@ -48,9 +48,9 @@ Django as a framework already have authentication module, his name written in se
             new_user = form.save(commit=False) <----- We reserved in database ID number for our password and in next step we will try to write password to database with this reserved ID.
             new_user.set_password(form.cleaned_data['password']) <----- We try to write password to database with this reserved ID.
             new_user.save() <----- If all OK we saved information in database.
-            return render(request, 'registration_done.html', context={'user': new_user) <----- About this in next step.
+            return render(request, 'registration_done.html', context={'user': new_user}) <----- About this in next step.
 
-        return (render, 'registration.html', context={'form': form}
+        return render(request, 'registration.html', context={'form': form}) <----- About this in next step too.
 
 4. In folder account\ create folder templates\ and create file 'registration.html' and 'registration_done.html'.
 

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'main_page.apps.MainPageConfig',
     'manager.apps.ManagerConfig',
     'tinymce',
+    'account.apps.AccountConfig',
+
 ]
 
 MIDDLEWARE = [

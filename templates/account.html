@@ -7,13 +7,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Delicious</title>
+  <title>Registration</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href={% static "assets/img/favicon.png" %} rel="icon">
-  <link href={% static "assets/img/apple-touch-icon.png" %}  rel="apple-touch-icon">
+  <link href={% static "assets/img/favicon.png" %}crel="icon">
+  <link href={% static "assets/img/apple-touch-icon.png" %}rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet">
@@ -40,15 +40,15 @@
 <body>
 
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center fixed-top topbar-transparent">
+  <section id="topbar" class="d-flex align-items-center fixed-top ">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-center justify-content-lg-start">
-      <i class="bi bi-phone d-flex align-items-center"><span>{{ information_in_contact_us.phone_for_top_bar }}</span></i>
+<i class="bi bi-phone d-flex align-items-center"><span>{{ information_in_contact_us.phone_for_top_bar }}</span></i>
       <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"><span>{{ information_in_contact_us.open_hours_for_top_bar }}</span></i>
     </div>
   </section>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+  <header id="header" class="fixed-top d-flex align-items-center ">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <div class="logo me-auto">
@@ -59,14 +59,14 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="/#hero">Home</a></li>
+          <li><a class="nav-link scrollto " href="/#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="/#about">About</a></li>
           <li><a class="nav-link scrollto" href="/#menu">Menu</a></li>
           <li><a class="nav-link scrollto" href="/#specials">Specials</a></li>
           <li><a class="nav-link scrollto" href="/#events">Events</a></li>
           <li><a class="nav-link scrollto" href="/#chefs">Chefs</a></li>
           <li><a class="nav-link scrollto" href="/#gallery">Gallery</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -93,13 +93,8 @@
     </div>
   </header><!-- End Header -->
 
-  <main id="main">
-
-      {% block content %}
-      {% endblock %}
-
-
-  </main><!-- End #main -->
+  {% block content %}
+  {% endblock %}
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -122,13 +117,13 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src={% static "assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}></script>
-  <script src={% static "assets/vendor/glightbox/js/glightbox.min.js" %}></script>
-  <script src={% static "assets/vendor/isotope-layout/isotope.pkgd.min.js" %}></script>
-  <script src={% static "assets/vendor/swiper/swiper-bundle.min.js" %}></script>
+  <script src={% static "assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %} ></script>
+  <script src={% static "assets/vendor/glightbox/js/glightbox.min.js" %} ></script>
+  <script src={% static "assets/vendor/isotope-layout/isotope.pkgd.min.js" %} ></script>
+  <script src={% static "assets/vendor/swiper/swiper-bundle.min.js" %} ></script>
 
   <!-- Template Main JS File -->
-  <script src={% static "assets/js/main.js" %}></script>
+  <script src={% static "assets/js/main.js" %}  ></script>
 
 </body>
 
