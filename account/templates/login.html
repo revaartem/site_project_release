@@ -24,6 +24,7 @@
                         <form method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
+                            <li>Have no account? <a href={% url 'registration_view' %}>Sign up</a></li>
                             <input type="submit" value="Submit">
                         </form>
                     </div>
