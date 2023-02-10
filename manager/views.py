@@ -11,11 +11,13 @@ def is_manager(user):
 @login_required(login_url='login/')
 @user_passes_test(is_manager)
 def manager_page(request):
+    user_auth = request.user.is_authenticated
     information_in_contact_us = InformationInContactUs.objects.get()
     footer = Footer.objects.get()
     return render(request, 'manager_main_page.html', context={
         'information_in_contact_us': information_in_contact_us,
-        'footer': footer
+        'footer': footer,
+        'user_auth': user_auth,
     })
 
 
