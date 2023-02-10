@@ -30,7 +30,7 @@ DB_HOST = os.environ.get('DB_HOST')
 DB_PORT =  os.environ.get('DB_PORT') or '5432'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['site-reva.herokuapp.com', ]
 
